@@ -5,8 +5,9 @@ module.exports = {
   },
   rules: {
     'object-curly-newline': 'off',
-    'no-console': process.env.NODE_ENV === 'development' ? 'off' : 'error',
-    'no-alert': process.env.NODE_ENV === 'development' ? 'off' : 'error',
+    'no-console': 'error',
+    // 'no-console': process.env.NODE_ENV === 'development' ? 'off' : 'error',
+    // 'no-alert': process.env.NODE_ENV === 'development' ? 'off' : 'error',
   },
   extends: ['airbnb', 'plugin:prettier/recommended'],
   overrides: [

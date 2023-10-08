@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import './App.css';
 import React from 'react';
 import { Button } from 'antd';
