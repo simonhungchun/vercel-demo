@@ -6,6 +6,7 @@ module.exports = {
   rules: {
     'object-curly-newline': 'off',
     'no-console': 'error',
+    'react/jsx-props-no-spreading': 'off',
     // 'no-console': process.env.NODE_ENV === 'development' ? 'off' : 'error',
     // 'no-alert': process.env.NODE_ENV === 'development' ? 'off' : 'error',
   },

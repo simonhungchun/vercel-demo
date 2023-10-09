@@ -15,7 +15,6 @@ http.interceptors.request.use((config) => {
 // 响应拦截器（收到响应了、 没收到响应）
 http.interceptors.response.use(
   (response) => {
-    console.log(response);
     return response.data;
   },
   (error) => {
