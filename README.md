@@ -31,7 +31,3 @@ npx abc => 运行./node_modules/.bin/abc.js
 webpack => 去环境变量中 Path 去匹配路径寻找 webpack 这个可执行文件
 尝试:
 npm i webpack -g
-
-1. E:\soft\gitee\Git\cmd\webpack
-2. C:\Program Files\nodejs\webpack
-3. C:\python27\webpack
