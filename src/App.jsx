@@ -1,74 +1,23 @@
 /* eslint-disable no-console */
-import React, { useRef } from 'react';
-import {
-  useToggle,
-  // useMousePosition,
-  useDateBinding,
-  useRequest,
-  useSize,
-  useClickAway,
-} from './hooks';
-import Bar from './components/Bar';
-import Foo from './components/Foo';
-import { getLoginQrCKey } from './api';
-
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increase, decrease, increaseByValue } from './store/slices/counter';
+// 消费RTK（redux）中定义数据（useSelector）
 function App() {
-  const { value: bool, toggle } = useToggle(false);
-  // const { x, y } = useMousePosition();
-  const username = useDateBinding('shc');
-  const password = useDateBinding('123');
-  const { loading, data, run: execGetLoginQrCKey } = useRequest(getLoginQrCKey, { params: {} });
-  const divRef = useRef(null);
-  const { width, height } = useSize(divRef);
-  useClickAway(() => {
-    console.log('触发了');
-  }, divRef);
-
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
   return (
     <div>
-      <h4>
-        {width}px,{height}px
-      </h4>
-      <div
-        ref={divRef}
-        style={{
-          width: '25vw',
-          height: '25vh',
-          backgroundColor: 'orange',
-        }}
-      />
-      {loading ? <h3>请求中...</h3> : <h2>{data?.data.unikey}</h2>}
-      <button type="button" onClick={execGetLoginQrCKey}>
-        发送请求
+      <h1>{count}</h1>
+      <button type="button" onClick={() => dispatch(increase())}>
+        ++
       </button>
-      {/* <Bar a={1} b="2" c={[]} d={() => {}} e={<div />} f={{}} /> */}
-      <Bar a={1} b="1" c={[1, 2, 3]} />
-      <Foo />
-      <h1>{/* 鼠标此时的位置：{x},{y} */}</h1>
-      <button onClick={toggle} type="button">
-        {bool ? '开' : '关'}
+      <button type="button" onClick={() => dispatch(decrease())}>
+        --
       </button>
-      <div>
-        <h2>登陆</h2>
-        <div>
-          <label htmlFor="username">
-            账号：
-            <input type="text" id="username" {...username} />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="password">
-            密码：
-            <input type="password" id="password" {...password} />
-          </label>
-        </div>
-        <button
-          type="button"
-          onClick={() => console.log({ username: username.value, password: password.value })}
-        >
-          提交
-        </button>
-      </div>
+      <button type="button" onClick={() => dispatch(increaseByValue(10))}>
+        ++10
+      </button>
     </div>
   );
 }
